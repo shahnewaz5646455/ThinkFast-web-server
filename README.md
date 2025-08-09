@@ -1,4 +1,4 @@
-# Group Study Server
+# ThinkFast Server
 
 This is the server-side application for the Group Study platform, providing a RESTful API for managing assignments and submissions. The server is deployed on Vercel and connects to MongoDB for data storage.
 
