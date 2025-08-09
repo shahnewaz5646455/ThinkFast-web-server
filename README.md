@@ -1,92 +1,54 @@
-# Group Study - Assignment Management Platform
+# Group Study Server
 
-Welcome to **Group Study**!  
-A modern, user-friendly web application for managing assignments, submissions, and collaborative learning.
+This is the server-side application for the Group Study platform, providing a RESTful API for managing assignments and submissions. The server is deployed on Vercel and connects to MongoDB for data storage.
 
----
+## 🚀 Live Server
 
-## 🌐 Live Demo
+[https://groupstudyserver.vercel.app/](https://groupstudyserver.vercel.app/)
 
-- **Website:** [https://group-study00.netlify.app/](https://group-study00.netlify.app/)
-- **Server API:** [https://groupstudyserver.vercel.app/](https://groupstudyserver.vercel.app/)
+## Features
 
----
-## 📦 Main NPM Packages Used
+- **JWT Authentication** for secure API access
+- **Assignments Management**: Create, update, delete, and search assignments
+- **Submissions Management**: Submit, update, and fetch assignment submissions
+- **Role-based Access**: Protect sensitive routes with token verification
+- **MongoDB Integration** for persistent data storage
 
-- **react**  
-- **react-dom**  
-- **react-router-dom**  
-- **react-icons**  
-- **react-toastify**  
-- **lottie-react**  
-- **framer-motion**  
-- **sweetalert2**  
-- **date-fns**  
-- **react-datepicker**  
-- **tailwindcss**  
-- **daisyui**  
-- **autoprefixer**  
-- **postcss**  
-- **vite**  
+## API Endpoints
 
-> _And other standard packages for React development and styling._
-## 🖼️ What is Group Study?
+### Authentication
 
-Group Study is a full-featured assignment management platform built with React and Vite.  
-It empowers students and teachers to:
+- `POST /jwt`  
+  Generate a JWT token for a user (requires email in request body).
 
-- **Create, view, and manage assignments**
-- **Submit solutions and receive feedback**
-- **Track pending and completed assignments**
-- **Filter assignments by difficulty**
-- **Search assignments easily**
-- **Enjoy a beautiful, responsive, and modern UI with dark mode support**
+### Assignments
 
----
+- `GET /assignments`  
+  Get all assignments.
+- `GET /assignments/:id`  
+  Get a specific assignment by ID.
+- `GET /assignments/search?q=keyword`  
+  Search assignments by keyword.
+- `GET /assignments/difficulty/:level`  
+  Get assignments by difficulty level.
+- `POST /assignments`  
+  Create a new assignment.
+- `PUT /assignments/:id`  
+  Update an assignment (requires authentication).
+- `DELETE /assignments/:id`  
+  Delete an assignment.
 
-## 🚀 Features
+### Submissions
 
-- **User Authentication:** Secure login and registration.
-- **Assignment Creation:** Teachers can create assignments with title, description, marks, difficulty, and due date.
-- **Submission System:** Students can submit their work and view feedback.
-- **Pending & My Submissions:** Track your pending and completed assignments.
-- **Difficulty Filter & Search:** Find assignments by difficulty or keyword.
-- **Attractive UI:** Responsive design, dark/light mode, and interactive animations.
-- **Admin Controls:** Update or delete assignments (if authorized).
+- `POST /submissions`  
+  Submit a new assignment.
+- `PATCH /submissions/:id`  
+  Update a submission.
+- `GET /submissions/pending/:email`  
+  Get pending submissions for a user (requires authentication).
+- `GET /submissions/by-email/:email`  
+  Get all submissions by a user (requires authentication).
 
----
+## Environment Variables
 
-## 🛠️ Tech Stack
-
-- **Frontend:** React, Vite, Tailwind CSS, DaisyUI, React Icons, Lottie
-- **Backend:** Node.js, Express (see [server repo](https://groupstudyserver.vercel.app/))
-- **Authentication:** JWT & cookies
-- **Deployment:** Netlify (frontend), Vercel (backend)
-
----
-
-## 📸 Preview
-
-![Group Study Screenshot](https://i.ibb.co/6wQyQ7s/group-study-preview.png)
-
----
-
-## 💡 How to Use
-
-1. **Visit the [Live Website](https://group-study00.netlify.app/)**
-2. **Register or Login** to your account.
-3. **Browse Assignments:** View, filter, and search assignments.
-4. **Create Assignment:** (If teacher) Add new assignments for students.
-5. **Submit Work:** (If student) Submit your solutions and get feedback.
-6. **Track Progress:** See your pending and completed assignments.
-7. **Enjoy a seamless, modern experience!**
-
----
-
-## 📬 Feedback & Contributions
-
-Feel free to open issues or pull requests for suggestions and improvements!
-
----
-
-**Made with ❤️ for collaborative learning.**
+Create a `.env` file in the root directory with the following variables:
